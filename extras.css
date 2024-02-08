@@ -1,0 +1,85 @@
+:root{
+    --x: 0;
+    --y: 0;  
+    --xp: 0;   
+    --yp: 0;  
+    --hue: calc(0 (var(--xp) * 500));   
+    --bg: hsl(0 0% 10%);    
+    --size: 100px; 
+    --glow: radial-gradient(
+        50% 50% at center,
+         hsl(var(--hue) 80% 85%), 
+         hsl(var(--hue) 80% 70%),
+         transparent
+    )
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* min-width: 100vw; */
+    background-color: black;
+}
+
+button{
+    outline: none;
+    border: none;
+}
+
+.container{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.container .card{
+    position: relative;
+    width: 130px;
+    height: 60px;
+    border-radius: 10px;
+    background-color: rgba(45,45,45,1);
+    overflow: hidden;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1ch;
+    box-shadow: 0 1px hsl(0 0% 100% / 0.15) inset;
+
+}
+
+.container .card::before{
+    content: "";
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%,-50%);
+    background: radial-gradient(var(--clr),transparent,transparent);
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    transition: 0.5s, top 0s, left 0s;
+}
+
+.container .card:hover::before{
+    opacity: 1;
+}
+
+.container .card::after{
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background:  rgba(45,45,45,1);
+    /* background: var(--glow); */
+    border-radius: 10px;
+    /* filter: blur(20px); */
+
+    z-index: 2;
+}
+
+/* button span{
+    width: 50px;
+    height: 50px;
+    background-color: red;
+    z-index: 99;
+} */
